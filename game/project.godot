@@ -15,6 +15,10 @@ run/main_scene="uid://x821hd8lgv88"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Socket_Singleton="*res://src/socket-singleton.ts"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

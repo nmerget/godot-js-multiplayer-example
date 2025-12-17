@@ -2,8 +2,12 @@ import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { createNodeWebSocket } from "@hono/node-ws";
 import type { WSContext } from "hono/ws";
-import { uuid } from "./utils.js";
-import type { WSMessage, User, UserWithSocket } from "@shared";
+import type { WSMessage, User } from "@shared";
+import { faker } from "@faker-js/faker";
+
+type UserWithSocket = User & {
+  ws: WSContext<WebSocket>;
+};
 
 const app = new Hono();
 
@@ -24,13 +28,19 @@ app.get(
   upgradeWebSocket((c) => {
     return {
       onOpen: (_, ws) => {
-        ws.uuid = uuid();
+        ws.uuid = faker.string.uuid();
+        ws.username = faker.internet.username();
+        ws.avatar = faker.image.avatar();
 
-        const user: User = { uuid: ws.uuid, name: `User ${ws.uuid}` };
+        const user: User = {
+          uuid: ws.uuid,
+          username: ws.username,
+          avatar: ws.avatar,
+        };
 
         idMap.set(ws.uuid, { ...user, ws });
         const allUsers: User[] = Array.from(idMap.values()).map(
-          ({ uuid, name }): User => ({ uuid, name }),
+          ({ uuid, username, avatar }): User => ({ uuid, username, avatar }),
         );
         sendMessage(ws, {
           type: "setup",

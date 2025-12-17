@@ -1,11 +1,9 @@
 export type User = {
   uuid: string;
-  name: string;
+  username: string;
+  avatar: string;
 };
 
-export type UserWithSocket = User & {
-  ws: any;
-};
 
 export type WSMessage =
   | { type: "new-user"; sender?: string; user?: User }

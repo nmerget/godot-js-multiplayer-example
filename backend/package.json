@@ -7,14 +7,15 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
+    "@faker-js/faker": "^10.1.0",
     "@hono/node-server": "^1.19.6",
     "@hono/node-ws": "^1.2.0",
     "hono": "^4.11.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
+    "godot-js-multiplayer-example-shared": "workspace:*",
     "tsx": "^4.7.1",
-    "typescript": "^5.8.3",
-    "godot-js-multiplayer-example-shared": "workspace:*"
+    "typescript": "^5.8.3"
   }
 }
