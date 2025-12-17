@@ -1,0 +1,11 @@
+# Godot 4+ specific ignores
+!**/.gdignore
+!**/.gitkeep
+.godot/
+/android/
+node_modules
+.idea
+godot/editor
+godot/templates
+build
+/game/export_presets.cfg
