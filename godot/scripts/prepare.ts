@@ -16,7 +16,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const config = {
   gitTag: "v1.1.0-web-dlink",
-  godotVersion: "4.4" as "4.4" | "4.5",
+  godotVersion: "4.5" as "4.4" | "4.5",
   editorEngine: "v8" as "v8" | "qjs-ng",
   templateEngine: "qjs-ng" as "browser" | "qjs-ng",
 };

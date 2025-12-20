@@ -1,43 +1,40 @@
 import {
   Callable,
   HTTPRequest,
-  Label,
-  Node,
-  SceneNodes,
-  TextureRect,
   Image,
   ImageTexture,
+  Label,
+  Node,
+  ResourceLoader,
+  SceneNodes,
   Vector2,
 } from "godot";
 import { User, WSMessage } from "@shared";
 import SocketSingleton from "./socket-singleton";
+import { createClassBinder } from "godot.annotations";
+import Player from "./player";
 
-type GameUser = User & {
-  textureRect?: TextureRect;
-};
+type GameUser = User;
 
+const bind = createClassBinder<SceneNodes["scenes/Main.tscn"]>();
+
+@bind()
 export default class Main extends Node<SceneNodes["scenes/Main.tscn"]> {
   idMap = new Map<string, GameUser>();
   ownUserId: string | undefined;
 
-  userLabel: Label | undefined;
+  @bind.onready("Users")
+  userLabel!: Label;
 
   _ready(): void {
-    this.userLabel = this.get_node("Users");
-
     SocketSingleton._singleton.onMessageReceived.connect(
       Callable.create((wsMessageAsString: string) => {
-        console.log("Received message from server: ", wsMessageAsString);
         const wsMessage: WSMessage = JSON.parse(wsMessageAsString);
 
         switch (wsMessage.type) {
-          case "message":
-            console.log("Message payload: ", wsMessage.payload);
-            break;
           case "new-user":
             if (wsMessage.user && wsMessage.user.uuid !== this.ownUserId) {
               this.addUser(wsMessage.user);
-              console.log("New user joined: ", wsMessage.user);
             }
             break;
           case "user-left":
@@ -76,17 +73,17 @@ export default class Main extends Node<SceneNodes["scenes/Main.tscn"]> {
         }
 
         const texture = ImageTexture.create_from_image(image);
-        const textureRect = new TextureRect();
-
-        textureRect.texture = texture;
-        textureRect.expand_mode = TextureRect.ExpandMode.EXPAND_IGNORE_SIZE;
-        textureRect.size = new Vector2(100, 100);
-        textureRect.position = new Vector2(
-          Math.random() * 500,
-          Math.random() * 500,
+        const scene = ResourceLoader.load("res://scenes/Player.tscn");
+        const player = scene.instantiate();
+        player.init(
+          user.uuid === this.ownUserId,
+          user.uuid,
+          texture,
+          user.state?.position,
         );
-        this.add_sibling(textureRect);
-        this.idMap.set(user.uuid, { ...user, textureRect });
+        this.add_sibling(player);
+
+        this.idMap.set(user.uuid, user);
 
         this.updateUserLabel();
 
@@ -104,12 +101,5 @@ export default class Main extends Node<SceneNodes["scenes/Main.tscn"]> {
         .map((user) => `- ${user.username}`)
         .join("\n")}`;
     }
-  }
-
-  sendDummyMessage() {
-    SocketSingleton._singleton.send({
-      type: "message",
-      payload: "Hello from Main!",
-    });
   }
 }

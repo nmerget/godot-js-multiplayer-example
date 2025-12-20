@@ -1,14 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://x821hd8lgv88"]
+[gd_scene load_steps=3 format=3 uid="uid://x821hd8lgv88"]
 
 [ext_resource type="Script" uid="uid://dvciv8vne4y0p" path="res://src/main.ts" id="1_elqb8"]
+[ext_resource type="PackedScene" uid="uid://cj8wstf2yl0up" path="res://scenes/Ground.tscn" id="3_0bbpv"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_elqb8")
-
-[node name="Button" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Send"
 
 [node name="Users" type="Label" parent="."]
 offset_left = 2.0
@@ -16,4 +12,5 @@ offset_top = 54.0
 offset_right = 95.0
 offset_bottom = 136.0
 
-[connection signal="pressed" from="Button" to="." method="sendDummyMessage"]
+[node name="Ground" parent="." instance=ExtResource("3_0bbpv")]
+position = Vector2(0, 504)

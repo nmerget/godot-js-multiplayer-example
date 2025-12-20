@@ -196,7 +196,7 @@ declare module "godot.annotations" {
     export type Decorator<RestrictedContext extends DecoratorContext = DecoratorContext> = RestrictedContext extends ClassDecoratorContext ? <Context extends RestrictedContext>(target: ClassDecoratorClass<Context>, context: Context) => void : RestrictedContext extends ClassMemberDecoratorContext ? <Context extends RestrictedContext>(target: ClassMemberDecoratorTarget<Context>, context: Context) => void | ClassMemberDecoratorReturn<Context> : never;
     export type AnyDecorator = (value: unknown, context: DecoratorContext) => unknown;
     export type ClassValueMemberDecoratorContext<This = unknown, Value = unknown> = ClassGetterDecoratorContext<This, Value> | ClassSetterDecoratorContext<This, Value> | ClassFieldDecoratorContext<This, Value> | ClassAccessorDecoratorContext<This, Value>;
-    export function createClassBinder(): ClassBinder;
+    export function createClassBinder<SceneNodes>(): ClassBinder<SceneNodes>;
 }
 declare module "godot.typeloader" {
     /**

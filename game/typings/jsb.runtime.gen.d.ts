@@ -1,38 +1,38 @@
 declare module "godot.annotations" {
     import * as Godot from "godot";
     import * as GodotJsb from "godot-jsb";
-    type ClassBinder = (() => 
+    type ClassBinder<SceneNodes> = (() =>
             ((
-                target: GObjectConstructor, 
+                target: GObjectConstructor,
                 context: ClassDecoratorContext
             ) => void))
         & {
-            tool: () => 
+            tool: () =>
                 ((
-                    target: GObjectConstructor, 
+                    target: GObjectConstructor,
                     _context: ClassDecoratorContext
                 ) => void);
-            icon: (path: string) => 
+            icon: (path: string) =>
                 ((
-                    target: GObjectConstructor, 
+                    target: GObjectConstructor,
                     _context: ClassDecoratorContext
                 ) => void);
             export: ((
-                    type: Godot.Variant.Type, 
+                    type: Godot.Variant.Type,
                     options?: ExportOptions
                 ) => ClassMemberDecorator)
                 & {
                     multiline: () => ClassMemberDecorator;
                     range: (
-                        min: number, 
-                        max: number, 
-                        step: number, 
+                        min: number,
+                        max: number,
+                        step: number,
                         ...extra_hints: string[]
                     ) => ClassMemberDecorator;
                     range_int: (
-                        min: number, 
-                        max: number, 
-                        step: number, 
+                        min: number,
+                        max: number,
+                        step: number,
                         ...extra_hints: string[]
                     ) => ClassMemberDecorator;
                     file: (filter: string) => ClassMemberDecorator;
@@ -47,12 +47,12 @@ declare module "godot.annotations" {
                     ) => ClassMemberDecorator;
                     array: (clazz: ClassSpecifier) => ClassMemberDecorator;
                     dictionary: (
-                        key_class: VariantConstructor, 
+                        key_class: VariantConstructor,
                         value_class: VariantConstructor
                     ) => ClassMemberDecorator;
                     object: <
                     Constructor extends GObjectConstructor>(clazz: Constructor
-                    ) => 
+                    ) =>
                         ClassMemberDecorator<
                             ClassValueMemberDecoratorContext<
                                 unknown,
@@ -74,13 +74,13 @@ declare module "godot.annotations" {
                                 | number
                         >
                     ) => ClassMemberDecorator;
-                    cache: () => 
+                    cache: () =>
                         ClassMemberDecorator<
                             ClassAccessorDecoratorContext<Godot.Object>
                                 | ClassSetterDecoratorContext<Godot.Object>
                         >;
                 };
-            signal: () => 
+            signal: () =>
                 (<
                 Context extends ClassAccessorDecoratorContext<
                         Godot.Object,
@@ -94,35 +94,35 @@ declare module "godot.annotations" {
                         Godot.Object,
                         Godot.Signal
                     >>(
-                    _target: unknown, 
+                    _target: unknown,
                     context: Context
                 ) => ClassMemberDecoratorReturn<Context>);
-            rpc: (config?: RPCConfig) => 
+            rpc: (config?: RPCConfig) =>
                 ((
-                    _target: Function, 
+                    _target: Function,
                     context: string
                         | ClassMethodDecoratorContext
                 ) => void);
             onready: (
-                evaluator: string
+                evaluator: keyof SceneNodes  | string
                     | GodotJsb.internal.OnReadyEvaluatorFunc
-            ) => 
+            ) =>
                 ((
-                    _target: undefined, 
+                    _target: undefined,
                     context: string
-                        | ClassMethodDecoratorContext
+                        | ClassFieldDecoratorContext
                 ) => void);
-            deprecated: (message?: string) => 
+            deprecated: (message?: string) =>
                 Decorator<
                     ClassDecoratorContext<GObjectConstructor>
                         | ClassValueMemberDecoratorContext<GObjectConstructor>
                 >;
-            experimental: (message?: string) => 
+            experimental: (message?: string) =>
                 Decorator<
                     ClassDecoratorContext<GObjectConstructor>
                         | ClassValueMemberDecoratorContext<GObjectConstructor>
                 >;
-            help: (message?: string) => 
+            help: (message?: string) =>
                 Decorator<
                     ClassDecoratorContext<GObjectConstructor>
                         | ClassValueMemberDecoratorContext<GObjectConstructor>

@@ -25,7 +25,7 @@ const sendMessageToAll = (message: WSMessage) => {
 
 app.get(
   "/",
-  upgradeWebSocket((c) => {
+  upgradeWebSocket(() => {
     return {
       onOpen: (_, ws) => {
         ws.uuid = faker.string.uuid();
@@ -40,7 +40,12 @@ app.get(
 
         idMap.set(ws.uuid, { ...user, ws });
         const allUsers: User[] = Array.from(idMap.values()).map(
-          ({ uuid, username, avatar }): User => ({ uuid, username, avatar }),
+          ({ uuid, username, avatar, state }): User => ({
+            uuid,
+            username,
+            avatar,
+            state,
+          }),
         );
         sendMessage(ws, {
           type: "setup",
@@ -54,11 +59,24 @@ app.get(
         });
       },
       onMessage: (event, ws) => {
-        sendMessageToAll({
-          type: "message",
-          sender: ws.uuid,
-          payload: `User ${ws.uuid}: ${event.data}`,
-        });
+        try {
+          const parsed = JSON.parse(event.data.toString());
+          if (!parsed || typeof parsed !== "object" || !parsed.type) {
+            return; // Invalid message structure
+          }
+          const wsMessage: WSMessage = parsed as WSMessage;
+
+          if (wsMessage.type === "player-state" && ws.uuid) {
+            console.log(wsMessage);
+            const user = idMap.get(ws.uuid);
+            if (!user) return;
+            user.state = wsMessage.state;
+          }
+
+          sendMessageToAll({ ...wsMessage, sender: ws.uuid });
+        } catch {
+          return; // Invalid JSON
+        }
       },
       onClose: (evt, ws) => {
         if (!ws.uuid) return;
