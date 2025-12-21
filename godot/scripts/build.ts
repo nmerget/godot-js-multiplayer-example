@@ -3,7 +3,7 @@ import { platform } from "os";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 import { getEditorPath, osMap } from "./os.ts";
-import { cpSync, existsSync, mkdirSync } from "fs";
+import { cpSync, existsSync, mkdirSync, chmodSync } from "fs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -19,8 +19,13 @@ if (!existsSync(buildPath)) {
   mkdirSync(buildPath);
 }
 
+const editorPath = getEditorPath(os);
+if (platform() !== "win32") {
+  chmodSync(editorPath, 0o755);
+}
+
 const child = spawn(
-  getEditorPath(os),
+  editorPath,
   ["--editor", "--headless", "--path", gamePath, "--export-release", "Web"],
   {
     stdio: "inherit",
