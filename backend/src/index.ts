@@ -2,8 +2,14 @@ import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { createNodeWebSocket } from "@hono/node-ws";
 import type { WSContext } from "hono/ws";
-import type { WSMessage, User } from "@shared";
+import type { User, WSMessage } from "@shared";
 import { faker } from "@faker-js/faker";
+import { serveStatic } from "@hono/node-server/serve-static";
+import { dirname, resolve } from "path";
+import { fileURLToPath } from "url";
+import { existsSync } from "node:fs";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 type UserWithSocket = User & {
   ws: WSContext<WebSocket>;
@@ -24,7 +30,7 @@ const sendMessageToAll = (message: WSMessage) => {
 };
 
 app.get(
-  "/",
+  "/ws",
   upgradeWebSocket(() => {
     return {
       onOpen: (_, ws) => {
@@ -67,7 +73,6 @@ app.get(
           const wsMessage: WSMessage = parsed as WSMessage;
 
           if (wsMessage.type === "player-state" && ws.uuid) {
-            console.log(wsMessage);
             const user = idMap.get(ws.uuid);
             if (!user) return;
             user.state = wsMessage.state;
@@ -90,6 +95,19 @@ app.get(
     };
   }),
 );
+
+if (existsSync(resolve(__dirname, "build"))) {
+  app.get(
+    "*",
+    serveStatic({
+      root: "./dist/build",
+      onFound: (path, ctx) => {
+        ctx.header("Cross-Origin-Embedder-Policy", "require-corp");
+        ctx.header("Cross-Origin-Opener-Policy", "same-origin");
+      },
+    }),
+  );
+}
 
 const server = serve(
   {

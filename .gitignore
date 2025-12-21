@@ -9,3 +9,4 @@ godot/editor
 godot/templates
 build
 /game/export_presets.cfg
+dist/
