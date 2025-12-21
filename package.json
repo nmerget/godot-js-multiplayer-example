@@ -1,5 +1,21 @@
 {
   "name": "godot-js-multiplayer-example",
+  "description": "Real-time multiplayer game built with Godot Engine using TypeScript via GodotJS, featuring Hono backend for WebSocket communication",
+  "author": "Nicolas Merget",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nmerget/godot-js-multiplayer-example"
+  },
+  "keywords": [
+    "godot",
+    "godotjs",
+    "typescript",
+    "multiplayer",
+    "websocket",
+    "hono",
+    "game",
+    "realtime"
+  ],
   "scripts": {
     "dev": "pnpm -r --parallel dev",
     "build": "pnpm --filter godot-js-multiplayer-example-backend build && pnpm --filter godot-js-multiplayer-example-game build && pnpm --filter godot-js-multiplayer-example-godot build",
