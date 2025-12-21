@@ -4,6 +4,14 @@ A real-time multiplayer game built with Godot Engine using TypeScript via [Godot
 
 🎮 **Live Demo**: [godotjs-multiplayer-example.nicolasmerget.de](https://godotjs-multiplayer-example.nicolasmerget.de/)
 
+## Game Overview
+
+This is a simple multiplayer platformer game where:
+- Each player gets a randomly generated username and avatar using [Faker.js](https://fakerjs.dev/)
+- Players can move left and right using arrow keys or A/D keys
+- Jump using the spacebar
+- See other players moving around in real-time
+
 ## Architecture
 
 This project consists of four main workspaces:
