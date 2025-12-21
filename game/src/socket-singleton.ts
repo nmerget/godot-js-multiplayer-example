@@ -26,7 +26,7 @@ export default class SocketSingleton extends Node {
 
   _ready(): void {
     this.socket = new WebSocketPeer();
-    this.socket.connect_to_url("ws://localhost:3000");
+    this.socket.connect_to_url("ws://localhost:3000/ws");
   }
 
   _process() {

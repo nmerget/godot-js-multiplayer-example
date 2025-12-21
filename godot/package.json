@@ -8,6 +8,7 @@
   },
   "scripts": {
     "postinstall": "node scripts/prepare.ts",
-    "dev": "node scripts/dev.ts"
+    "dev": "node scripts/dev.ts",
+    "build": "node scripts/build.ts"
   }
 }

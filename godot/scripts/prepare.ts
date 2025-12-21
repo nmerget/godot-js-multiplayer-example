@@ -11,6 +11,7 @@ import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 import AdmZip from "adm-zip";
 import { getExportPresets } from "./export-presets.ts";
+import { osMap } from "./os.ts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -19,12 +20,6 @@ export const config = {
   godotVersion: "4.5" as "4.4" | "4.5",
   editorEngine: "v8" as "v8" | "qjs-ng",
   templateEngine: "qjs-ng" as "browser" | "qjs-ng",
-};
-
-export const osMap: Record<string, string> = {
-  win32: "windows",
-  darwin: "macos",
-  linux: "linux",
 };
 
 const os = osMap[platform()];
