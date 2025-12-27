@@ -7,5 +7,4 @@
 node_modules
 .idea
 build
-/game/export_presets.cfg
 dist/
