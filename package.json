@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "dev": "pnpm -r --parallel dev",
-    "build": "pnpm --filter godot-js-multiplayer-example-backend build && pnpm --filter godot-js-multiplayer-example-game build && pnpm --filter godot-js-multiplayer-example-godot build",
+    "build": "pnpm --filter godot-js-multiplayer-example-backend build && pnpm --filter godot-js-multiplayer-example-game build",
     "start": "pnpm --filter godot-js-multiplayer-example-backend start"
   },
   "packageManager": "pnpm@10.16.1+sha512.0e155aa2629db8672b49e8475da6226aa4bdea85fdcdfdc15350874946d4f3c91faaf64cbdc4a5d1ab8002f473d5c3fcedcd197989cf0390f9badd3c04678706"

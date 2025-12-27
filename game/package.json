@@ -1,17 +1,20 @@
 {
   "name": "godot-js-multiplayer-example-game",
   "devDependencies": {
-    "@types/node": "22.19.3",
-    "typescript": "^5.9.2",
-    "godot-js-multiplayer-example-shared": "workspace:*"
+	"@types/node": "22.19.3",
+	"typescript": "^5.9.2",
+	"godot-js-multiplayer-example-shared": "workspace:*",
+	"@godot-js/editor": "1.1.0-editor"
   },
   "type": "module",
   "scripts": {
-    "build": "tsc --build",
-    "postbuild": "node build-scripts/replace-websocket.ts",
-    "dev": "tsc -w"
+	"build": "godot-js build",
+	"dev": "godot-js dev",
+	"init": "godot-js init --name=game",
+	"postbuild": "node build-scripts/replace-websocket.ts",
+	"postinstall": "godot-js prepare"
   },
   "dependencies": {
-    "hono": "^4.11.1"
+	"hono": "^4.11.1"
   }
 }

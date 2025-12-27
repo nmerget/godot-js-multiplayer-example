@@ -8,7 +8,7 @@ A real-time multiplayer game built with Godot Engine using TypeScript via [Godot
 
 This is a simple multiplayer platformer game where:
 - Each player gets a randomly generated username and avatar using [Faker.js](https://fakerjs.dev/)
-- Players can move left and right using arrow keys or A/D keys
+- Players can move left and right using arrow keys
 - Jump using the spacebar
 - See other players moving around in real-time
 
@@ -19,7 +19,6 @@ This project consists of four main workspaces:
 - **`backend/`** - Hono server handling WebSocket connections and serving the built game
 - **`game/`** - Godot game client written in TypeScript using GodotJS
 - **`shared/`** - Shared TypeScript types used by both backend and game
-- **`godot/`** - Godot editor setup and export templates for web builds
 
 ## Prerequisites
 
@@ -60,9 +59,6 @@ cd backend && pnpm dev
 
 # Game TypeScript compilation only
 cd game && pnpm dev
-
-# Godot editor only
-cd godot && pnpm dev
 ```
 
 ## Building
@@ -100,10 +96,6 @@ pnpm start
 │   └── build-scripts/ # Post-build processing
 ├── shared/            # Shared TypeScript types
 │   └── src/index.ts   # Common types and interfaces
-├── godot/             # Godot engine and templates
-│   ├── editor/        # Godot editor executable
-│   ├── templates/     # Web export templates
-│   └── scripts/       # Build and setup scripts
 └── .github/workflows/ # CI/CD configuration
 ```
 
