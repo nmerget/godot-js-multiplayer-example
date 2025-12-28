@@ -43,8 +43,8 @@ importers:
         version: 4.11.1
     devDependencies:
       '@godot-js/editor':
-        specifier: 1.1.0-editor
-        version: 1.1.0-editor(@types/node@22.19.3)(typescript@5.9.3)
+        specifier: 1.1.0-editor2
+        version: 1.1.0-editor2(@types/node@22.19.3)(typescript@5.9.3)
       '@types/node':
         specifier: 22.19.3
         version: 22.19.3
@@ -54,18 +54,6 @@ importers:
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
-
-  godot:
-    devDependencies:
-      '@types/adm-zip':
-        specifier: ^0.5.7
-        version: 0.5.7
-      '@types/node':
-        specifier: 24.10.4
-        version: 24.10.4
-      adm-zip:
-        specifier: ^0.5.16
-        version: 0.5.16
 
   shared: {}
 
@@ -239,8 +227,8 @@ packages:
     resolution: {integrity: sha512-C3mrr3b5dRVlKPJdfrAXS8+dq+rq8Qm5SNRazca0JKgw1HQERFmrVb0towvMmw5uu8hHKNiQasMaR/tydf3Zsg==}
     engines: {node: ^20.19.0 || ^22.13.0 || ^23.5.0 || >=24.0.0, npm: '>=10'}
 
-  '@godot-js/editor@1.1.0-editor':
-    resolution: {integrity: sha512-x16d7HlYWtm77qiPc/0akh7nKjS1VAATpojeBuQo/FlCOfh/vzP1To+pDS1xzZR4c+jM8tylSThH5q9D4TNG7Q==}
+  '@godot-js/editor@1.1.0-editor2':
+    resolution: {integrity: sha512-zuoz/+R4T084hUACzsil1qEzJz/zkL2AXvdl6UW/CdhUvQv4lY0EcITo59PvkxGc0TuGxFIO4LQNze/P0vx4/g==}
     hasBin: true
 
   '@hono/node-server@1.19.7':
@@ -398,17 +386,11 @@ packages:
     resolution: {integrity: sha512-ZT55BDLV0yv0RBm2czMiZ+SqCGO7AvmOM3G/w2xhVPH+te0aKgFjmBvGlL1dH+ql2tgGO3MVrbb3jCKyvpgnxA==}
     engines: {node: 20 || >=22}
 
-  '@types/adm-zip@0.5.7':
-    resolution: {integrity: sha512-DNEs/QvmyRLurdQPChqq0Md4zGvPwHerAJYWk9l2jCbD1VPpnzRJorOdiq4zsw09NFbYnhfsoEhWtxIzXpn2yw==}
-
   '@types/node@20.19.27':
     resolution: {integrity: sha512-N2clP5pJhB2YnZJ3PIHFk5RkygRX5WO/5f0WC08tp0wd+sv0rsJk3MqWn3CbNmT2J505a5336jaQj4ph1AdMug==}
 
   '@types/node@22.19.3':
     resolution: {integrity: sha512-1N9SBnWYOJTrNZCdh/yJE+t910Y128BoyY+zBLWhL3r0TYzlTmFdXrPwHL9DyFZmlEXNQQolTZh3KHV31QDhyA==}
-
-  '@types/node@24.10.4':
-    resolution: {integrity: sha512-vnDVpYPMzs4wunl27jHrfmwojOGKya0xyM3sH+UE5iv5uPS6vX7UIoh6m+vQc5LGBq52HBKPIn/zcSZVzeDEZg==}
 
   adm-zip@0.5.16:
     resolution: {integrity: sha512-TGw5yVi4saajsSEgz25grObGHEUaDrniwvA2qwSC060KfqGPdglhvPMA2lPIoxs3PQIItj2iag35fONcQqgUaQ==}
@@ -589,9 +571,6 @@ packages:
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
-  undici-types@7.16.0:
-    resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
-
   wrap-ansi@6.2.0:
     resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==}
     engines: {node: '>=8'}
@@ -702,7 +681,7 @@ snapshots:
 
   '@faker-js/faker@10.1.0': {}
 
-  '@godot-js/editor@1.1.0-editor(@types/node@22.19.3)(typescript@5.9.3)':
+  '@godot-js/editor@1.1.0-editor2(@types/node@22.19.3)(typescript@5.9.3)':
     dependencies:
       '@inquirer/prompts': 7.10.1(@types/node@22.19.3)
       adm-zip: 0.5.16
@@ -858,10 +837,6 @@ snapshots:
     dependencies:
       '@isaacs/balanced-match': 4.0.1
 
-  '@types/adm-zip@0.5.7':
-    dependencies:
-      '@types/node': 20.19.27
-
   '@types/node@20.19.27':
     dependencies:
       undici-types: 6.21.0
@@ -869,10 +844,6 @@ snapshots:
   '@types/node@22.19.3':
     dependencies:
       undici-types: 6.21.0
-
-  '@types/node@24.10.4':
-    dependencies:
-      undici-types: 7.16.0
 
   adm-zip@0.5.16: {}
 
@@ -1045,8 +1016,6 @@ snapshots:
   typescript@5.9.3: {}
 
   undici-types@6.21.0: {}
-
-  undici-types@7.16.0: {}
 
   wrap-ansi@6.2.0:
     dependencies:

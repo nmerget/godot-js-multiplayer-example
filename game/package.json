@@ -4,7 +4,7 @@
 	"@types/node": "22.19.3",
 	"typescript": "^5.9.2",
 	"godot-js-multiplayer-example-shared": "workspace:*",
-	"@godot-js/editor": "1.1.0-editor"
+	"@godot-js/editor": "1.1.0-editor2"
   },
   "type": "module",
   "scripts": {
