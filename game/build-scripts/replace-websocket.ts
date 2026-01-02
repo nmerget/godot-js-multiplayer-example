@@ -1,4 +1,9 @@
 import { readFileSync, writeFileSync } from "node:fs";
+import { resolve, dirname } from "path";
+import { fileURLToPath } from "url";
+import { cpSync } from "fs";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const host = process.env.HOST || "localhost";
 const port = process.env.PORT || "3000";
@@ -13,3 +18,8 @@ const updated = content.replace(
   `${protocol}://${host}:${port}`,
 );
 writeFileSync(socketFile, updated);
+
+const backendDistPath = resolve(__dirname, "../../backend/dist/build");
+const gamePath = resolve(__dirname, "../../game");
+const buildPath = resolve(gamePath, "build");
+cpSync(buildPath, backendDistPath, { recursive: true });
