@@ -12,7 +12,7 @@
     "build": "godot-js build",
     "dev": "godot-js dev",
     "init": "godot-js init --name=game",
-    "postbuild": "node build-scripts/copy-build.ts.ts",
+    "postbuild": "node build-scripts/copy-build.ts",
     "postinstall": "godot-js prepare"
   },
   "dependencies": {
